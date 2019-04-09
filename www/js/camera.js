@@ -28,7 +28,7 @@ var app = {
     },
     startButtonNull: function(){
         document.querySelector('#button-null').addEventListener('click', function(){
-           app.startScan("null");
+           app.returnResult("","null");
         });
     },
     startScan: function(type){
@@ -41,7 +41,7 @@ var app = {
                     "Format: " + result.format + "\n" +
                     "Cancelled: " + result.cancelled);
                 */
-              app.returnResult(result.text);
+              app.returnResult(result.text, type);
               // type sin usar -> switch
           },
           function (error) {
@@ -82,9 +82,9 @@ var app = {
         "cto": {"name":"CTO EXTERIOR 16pts", "des":"Caja Terminal Exterior de fibra de 16 puertos, del fabricante: Electroson.", "link":"http://www.google.com", "action":"A continuación, haz la lectura de la acometida: 12345"},
         "cable":{"name":"cabls de", "des":"me gusta", "link":"http://www.google.com","action":"Cierra la actuación, has terminado del ALTA."}
     },
-    returnResult: function(id){
+    returnResult: function(id,type){
         var div = document.getElementById("result");
-        switch(id) {
+        switch(type) {
           case "scan":
             // SCAN code block
                 if(!this.model.hasOwnProperty(id)){
